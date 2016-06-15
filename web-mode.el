@@ -782,6 +782,7 @@ Must be used in conjunction with web-mode-enable-block-face."
     ("python"           . ())
     ("razor"            . ("play" "play2"))
     ("riot"             . ())
+    ("spip"             . ())
     ("template-toolkit" . ())
     ("smarty"           . ())
     ("thymeleaf"        . ())
@@ -855,6 +856,7 @@ Must be used in conjunction with web-mode-enable-block-face."
     ("razor"            . "\\.\\(cs\\|vb\\)html\\|\\.razor\\'")
     ("riot"             . "\\.tag\\'")
     ("smarty"           . "\\.tpl\\'")
+    ("spip"             . "\\.html\\'")
     ("template-toolkit" . "\\.tt.?\\'")
     ("thymeleaf"        . "\\.thtml\\'")
     ("velocity"         . "\\.v\\(sl\\|tl\\|m\\)\\'")
@@ -1161,6 +1163,7 @@ Must be used in conjunction with web-mode-enable-block-face."
    '("razor"            . "@.\\|^[ \t]*}")
    '("riot"             . "{.")
    '("smarty"           . "{[[:alpha:]#$/*\"]")
+   '("spip"             . "\\[")
    '("template-toolkit" . "\\[%.\\|%%#")
    '("underscore"       . "<%")
    '("velocity"         . "#[[:alpha:]#*]\\|$[[:alpha:]!{]")
@@ -2971,6 +2974,11 @@ another auto-completion with different ac-sources (e.g. ac-php)")
                 delim-close "}")
           ) ;riot
 
+         ((string= web-mode-engine "spip")
+          (setq closing-string "]"
+                delim-open "["
+                delim-close "]"))
+
          ((string= web-mode-engine "marko")
           (setq closing-string "}"
                 delim-open "${"
@@ -3442,6 +3450,16 @@ another auto-completion with different ac-sources (e.g. ac-php)")
        (t
         (setq regexp "\"\\|'")))
       ) ;xoops
+
+     ((string= web-mode-engine "spip")
+      (cond
+       ((string= (buffer-substring-no-properties
+                  block-beg (+ block-beg 7))
+                 "[(#REM)")
+        (setq token-type 'comment
+              regexp "\\]"))
+       (t
+        (setq regexp "\\]"))))
 
      ((string= web-mode-engine "dust")
       (cond
