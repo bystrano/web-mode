@@ -1163,7 +1163,7 @@ Must be used in conjunction with web-mode-enable-block-face."
    '("razor"            . "@.\\|^[ \t]*}")
    '("riot"             . "{.")
    '("smarty"           . "{[[:alpha:]#$/*\"]")
-   '("spip"             . "\\[")
+   '("spip"             . "\\[(#REM)\\|(\\|#\\|{")
    '("template-toolkit" . "\\[%.\\|%%#")
    '("underscore"       . "<%")
    '("velocity"         . "#[[:alpha:]#*]\\|$[[:alpha:]!{]")
@@ -2975,9 +2975,15 @@ another auto-completion with different ac-sources (e.g. ac-php)")
           ) ;riot
 
          ((string= web-mode-engine "spip")
-          (setq closing-string "]"
-                delim-open "["
-                delim-close "]"))
+          (cond
+           ((and (string= sub1 "#")
+                 (looking-at "[A-Z_]+"))
+            (setq closing-string (match-string-no-properties 0)))
+           (t
+            (setq closing-string "]"
+                  delim-open "["
+                  delim-close "]"))
+            ))
 
          ((string= web-mode-engine "marko")
           (setq closing-string "}"
@@ -3458,6 +3464,8 @@ another auto-completion with different ac-sources (e.g. ac-php)")
                  "[(#REM)")
         (setq token-type 'comment
               regexp "\\]"))
+       ((string= sub1 "#")
+        (setq regexp "[^A-Z_]"))
        (t
         (setq regexp "\\]"))))
 
