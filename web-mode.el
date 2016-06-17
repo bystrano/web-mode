@@ -1163,7 +1163,7 @@ Must be used in conjunction with web-mode-enable-block-face."
    '("razor"            . "@.\\|^[ \t]*}")
    '("riot"             . "{.")
    '("smarty"           . "{[[:alpha:]#$/*\"]")
-   '("spip"             . "\\[(#REM)\\|(\\|#\\|{")
+   '("spip"             . "\\[(#REM)\\|(\\|#[A-Z_]\\|{")
    '("template-toolkit" . "\\[%.\\|%%#")
    '("underscore"       . "<%")
    '("velocity"         . "#[[:alpha:]#*]\\|$[[:alpha:]!{]")
