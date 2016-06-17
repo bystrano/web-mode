@@ -2079,6 +2079,15 @@ shouldn't be moved back.)")
    '("\\_<\\([$]\\)\\([[:alnum:]_]*\\)" (1 nil) (2 'web-mode-variable-name-face))
    ))
 
+(defvar web-mode-spip-font-lock-keywords
+;; (setq web-mode-spip-font-lock-keywords
+  (list
+   '("#[A-Z_\\*]*" 0 'web-mode-variable-name-face)
+   '("|[^){]+" 0 'web-mode-function-call-face)
+   '("[a-z0-9_]+" 0 'web-mode-symbol-face)
+   '("(\\([[:alnum:]_ ]+\\))" 1 'web-mode-constant-face)
+   ))
+
 (defvar web-mode-latex-font-lock-keywords
   (list
    '("[[:alnum:]_]+" 0 'web-mode-function-name-face t t)
@@ -2110,6 +2119,7 @@ shouldn't be moved back.)")
     ("razor"            . web-mode-razor-font-lock-keywords)
     ("riot"             . web-mode-riot-font-lock-keywords)
     ("smarty"           . web-mode-smarty-font-lock-keywords)
+    ("spip"             . web-mode-spip-font-lock-keywords)
     ("template-toolkit" . web-mode-template-toolkit-font-lock-keywords)
     ("underscore"       . web-mode-underscore-font-lock-keywords)
     ("web2py"           . web-mode-web2py-font-lock-keywords)
