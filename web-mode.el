@@ -2989,10 +2989,12 @@ another auto-completion with different ac-sources (e.g. ac-php)")
            ((and (string= sub1 "#")
                  (looking-at "[A-Z_]+"))
             (setq closing-string (match-string-no-properties 0)))
+           ((string= sub1 "(")
+            (setq closing-string ")"))
+           ((string= sub1 "{")
+            (setq closing-string "}"))
            (t
-            (setq closing-string "]"
-                  delim-open "["
-                  delim-close "]"))
+            (setq closing-string "]"))
             ))
 
          ((string= web-mode-engine "marko")
@@ -3476,6 +3478,10 @@ another auto-completion with different ac-sources (e.g. ac-php)")
               regexp "\\]"))
        ((string= sub1 "#")
         (setq regexp "[^A-Z_]"))
+       ((string= sub1 "(")
+        (setq regexp ")"))
+       ((string= sub1 "{")
+        (setq regexp "}"))
        (t
         (setq regexp "\\]"))))
 
