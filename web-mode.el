@@ -2083,7 +2083,6 @@ shouldn't be moved back.)")
   (list
    '("#[A-Z_\\*]*" 0 'web-mode-variable-name-face)
    '("|[^){]+" 0 'web-mode-function-call-face)
-   '("[a-z0-9_]+" 0 'web-mode-symbol-face)
    '("(\\([[:alnum:]_ ]+\\))" 1 'web-mode-constant-face)
    ))
 
