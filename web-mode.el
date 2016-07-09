@@ -3470,20 +3470,11 @@ another auto-completion with different ac-sources (e.g. ac-php)")
       ) ;xoops
 
      ((string= web-mode-engine "spip")
-      (cond
-       ((string= (buffer-substring-no-properties
-                  block-beg (+ block-beg 7))
-                 "[(#REM)")
-        (setq token-type 'comment
-              regexp "\\]"))
-       ((string= sub1 "#")
-        (setq regexp "[^A-Z_]"))
-       ((string= sub1 "(")
-        (setq regexp ")"))
-       ((string= sub1 "{")
-        (setq regexp "}"))
-       (t
-        (setq regexp "\\]"))))
+      (if (string= (buffer-substring-no-properties
+                    block-beg (+ block-beg 7))
+                   "[(#REM)")
+          (setq token-type 'comment
+                regexp "\\]")))
 
      ((string= web-mode-engine "dust")
       (cond
