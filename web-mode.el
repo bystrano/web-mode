@@ -2081,7 +2081,7 @@ shouldn't be moved back.)")
 (defvar web-mode-spip-font-lock-keywords
 ;; (setq web-mode-spip-font-lock-keywords
   (list
-   '("#[A-Z_\\*]*" 0 'web-mode-variable-name-face)
+   '("#[A-Z0-9_]*" 0 'web-mode-variable-name-face)
    '("|[^){]+" 0 'web-mode-function-call-face)
    '("(\\([[:alnum:]_ ]+\\))" 1 'web-mode-constant-face)
    ))
@@ -2985,7 +2985,7 @@ another auto-completion with different ac-sources (e.g. ac-php)")
          ((string= web-mode-engine "spip")
           (cond
            ((and (string= sub1 "#")
-                 (looking-at "[A-Z_]+"))
+                 (looking-at "[A-Z0-9_]+"))
             (setq closing-string (match-string-no-properties 0)))
            ((string= sub1 "(")
             (setq closing-string ")"))
