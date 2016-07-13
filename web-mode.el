@@ -2080,8 +2080,8 @@ shouldn't be moved back.)")
 
 (defvar web-mode-spip-font-lock-keywords
   (list
-   '("#[A-Z0-9_]*" 0 'web-mode-variable-name-face)
-   '("|[^){]+" 0 'web-mode-function-call-face)
+   '("#[A-Z0-9_]+" 0 'web-mode-variable-name-face)
+   '("|[a-z0-9_]+" 0 'web-mode-function-call-face)
    '("(\\([[:alnum:]_ ]+\\))" 1 'web-mode-constant-face)
    '("<:[[:alnum:]_:]+:>" 0 'web-mode-block-string-face)
    ))
