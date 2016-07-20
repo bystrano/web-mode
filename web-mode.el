@@ -12745,6 +12745,9 @@ Prompt user if TAG-NAME isn't provided."
             (regexp-opt web-mode-django-control-blocks t))
       )
 
+    (when (string= web-mode-engine "spip")
+      (modify-syntax-entry ?# "w" (syntax-table)))
+
 ;;    (message "%S" (symbol-value (cdr (assoc web-mode-engine web-mode-engines-font-lock-keywords))))
 
     ))
