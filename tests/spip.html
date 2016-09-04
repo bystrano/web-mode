@@ -12,6 +12,7 @@
       {id_mot?}
       {!par date}>
 
+      <:local:dans{titre_rubrique=#INFO_TITRE{rubrique, #ID_RUBRIQUE}}:>
       <a href="#URL_ARTICLE">
         <article [(#COMPTEUR_BOUCLE|=={#TOTAL_BOUCLE}|oui) class="end"]>
           [(#LOGO_ARTICLE
